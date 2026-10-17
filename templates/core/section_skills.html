@@ -1,0 +1,27 @@
+{% if skill_categories %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Capabilities</p>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="row g-4">
+      {% for category in skill_categories %}
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="glass-card h-100">
+          <h3 class="h5"><i class="{{ category.icon_class|default:'bi bi-stars' }}"></i> {{ category.name }}</h3>
+          {% for skill in category.skills.all %}
+            {% if skill.is_active %}
+            <div class="skill-row">
+              <div><span>{{ skill.name }}</span><span>{{ skill.percentage }}%</span></div>
+              <div class="progress"><div class="progress-bar" data-width="{{ skill.percentage }}"></div></div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

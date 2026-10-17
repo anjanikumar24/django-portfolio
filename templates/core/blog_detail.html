@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{% if post.meta_title %}{{ post.meta_title }}{% else %}{{ post.title }}{% endif %}{% endblock %}
+{% block meta_description %}{% if post.meta_description %}{{ post.meta_description }}{% else %}{{ post.excerpt|truncatechars:155 }}{% endif %}{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container reveal"><p class="eyebrow">{{ post.category.name|default:"Article" }}</p><h1>{{ post.title }}</h1><p class="lead">{{ post.excerpt }}</p></div></section>
+<section class="section"><div class="container"><div class="row g-5">
+<article class="col-lg-8 reveal">{% if post.featured_image %}<img class="detail-hero-image" src="{{ post.featured_image.url }}" alt="{{ post.title }}">{% endif %}<div class="content-block">{{ post.content|linebreaks }}</div></article>
+<aside class="col-lg-4 reveal"><div class="glass-card sticky-card"><h2 class="h5">Recent Posts</h2>{% for item in recent_posts %}<a class="footer-link" href="{{ item.get_absolute_url }}">{{ item.title }}</a>{% endfor %}</div></aside>
+</div></div></section>
+{% if related_posts %}<section class="section band"><div class="container"><h2 class="section-title reveal">Related Posts</h2><div class="row g-4">{% for post in related_posts %}{% include "core/blog_card.html" %}{% endfor %}</div></div></section>{% endif %}
+{% endblock %}

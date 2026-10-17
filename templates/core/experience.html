@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Experience{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Career" title="Experience" subtitle="" %}
+<section class="section"><div class="container"><div class="timeline-list">
+{% for experience in experiences %}
+<article class="timeline-card reveal">
+  {% if experience.logo %}<img src="{{ experience.logo.url }}" alt="{{ experience.company }}">{% endif %}
+  <div><p class="eyebrow">{{ experience.duration }}</p><h2>{{ experience.position }}</h2><h3>{{ experience.company }}</h3><p>{{ experience.description }}</p><p>{{ experience.responsibilities|linebreaksbr }}</p><span>{{ experience.technologies }}</span></div>
+</article>
+{% empty %}<div class="glass-card text-center">No experience entries are published yet.</div>{% endfor %}
+</div></div></section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{% if hero.meta_title %}{{ hero.meta_title }}{% elif hero %}{{ hero.name }} - {{ hero.professional_title }}{% else %}Portfolio{% endif %}{% endblock %}
+{% block meta_description %}{% if hero.meta_description %}{{ hero.meta_description }}{% elif hero %}{{ hero.short_description|truncatechars:155 }}{% endif %}{% endblock %}
+{% block content %}
+<section class="hero-section" {% if hero.cover_image %}style="background-image:linear-gradient(110deg,rgba(2,6,23,.88),rgba(15,23,42,.74)),url('{{ hero.cover_image.url }}')"{% endif %}>
+  <div class="container">
+    {% if hero %}
+    <div class="row align-items-center min-vh-100 g-5">
+      <div class="col-lg-7 reveal">
+        <p class="eyebrow">Available for meaningful software work</p>
+        <h1>{{ hero.name }}</h1>
+        <h2>{{ hero.professional_title }}</h2>
+        <p class="typing-line"><span id="typingText" data-text="{{ hero.typing_text }}"></span></p>
+        <p class="lead">{{ hero.short_description }}</p>
+        <div class="hero-actions">
+          {% if hero.resume_pdf %}<a class="btn btn-gradient" href="{{ hero.resume_pdf.url }}" target="_blank">{{ hero.resume_button_text }}</a>{% endif %}
+          <a class="btn btn-outline-cyan" href="{% url 'core:contact' %}">{{ hero.hire_me_button_text }}</a>
+          <a class="btn btn-ghost" href="{% url 'core:contact' %}">{{ hero.contact_button_text }}</a>
+        </div>
+        <div class="meta-row">
+          {% if hero.email %}<span><i class="bi bi-envelope"></i>{{ hero.email }}</span>{% endif %}
+          {% if hero.phone %}<span><i class="bi bi-phone"></i>{{ hero.phone }}</span>{% endif %}
+          {% if hero.location %}<span><i class="bi bi-geo-alt"></i>{{ hero.location }}</span>{% endif %}
+        </div>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="profile-frame floating">
+          {% if hero.professional_photo %}
+            <img src="{{ hero.professional_photo.url }}" alt="{{ hero.name }}">
+          {% else %}
+            <div class="image-placeholder"><i class="bi bi-person"></i></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% else %}
+      <div class="empty-hero min-vh-100 d-flex align-items-center justify-content-center text-center">
+        <div><h1>Portfolio content is ready for admin setup.</h1><p>Create an active Hero Section in the admin panel.</p></div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% include "core/section_about.html" %}
+{% include "core/section_skills.html" %}
+{% include "core/section_stats.html" %}
+{% include "core/section_projects.html" %}
+{% include "core/section_services.html" %}
+{% include "core/section_testimonials.html" %}
+{% include "core/section_blog.html" %}
+{% include "core/section_contact.html" %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% if testimonials %}
+<section class="section band">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Trust</p>
+      <h2 class="section-title">Testimonials</h2>
+    </div>
+    <div class="row g-4">
+      {% for testimonial in testimonials %}
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="glass-card h-100">
+          <div class="rating">{% for _ in "12345"|make_list %}<i class="bi bi-star-fill"></i>{% endfor %}</div>
+          <p>{{ testimonial.review }}</p>
+          <div class="person">
+            {% if testimonial.photo %}<img src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}">{% endif %}
+            <span><strong>{{ testimonial.name }}</strong>{{ testimonial.position }}{% if testimonial.company %}, {{ testimonial.company }}{% endif %}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

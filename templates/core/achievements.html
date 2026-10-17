@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Achievements{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Recognition" title="Achievements" subtitle="" %}
+<section class="section"><div class="container"><div class="row g-4">
+{% for item in achievements %}
+<div class="col-md-6 col-xl-4 reveal"><div class="project-card h-100">{% if item.image %}<div class="project-image"><img src="{{ item.image.url }}" alt="{{ item.achievement }}"></div>{% endif %}<div class="project-body"><p class="eyebrow">{{ item.competition }}</p><h3>{{ item.achievement }}</h3><strong>{{ item.award }}</strong><p>{{ item.description }}</p></div></div></div>
+{% empty %}<div class="col-12"><div class="glass-card text-center">No achievements are published yet.</div></div>{% endfor %}
+</div></div></section>
+{% endblock %}

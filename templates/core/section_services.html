@@ -1,0 +1,21 @@
+{% if services %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Services</p>
+      <h2 class="section-title">What I Build</h2>
+    </div>
+    <div class="row g-4">
+      {% for service in services %}
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="glass-card icon-card h-100">
+          <i class="{{ service.icon_class|default:'bi bi-code-square' }}"></i>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

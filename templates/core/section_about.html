@@ -1,0 +1,24 @@
+{% if about %}
+<section class="section band">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 reveal">
+        <div class="media-panel">
+          {% if about.about_image %}<img src="{{ about.about_image.url }}" alt="{{ about.title }}">{% endif %}
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">{{ about.title }}</h2>
+        <p>{{ about.biography }}</p>
+        {% if about.career_objective %}<p>{{ about.career_objective }}</p>{% endif %}
+        <div class="mini-grid">
+          {% if about.experience_summary %}<span><strong>{{ about.experience_summary }}</strong>Experience</span>{% endif %}
+          <span><strong>{{ about.projects_completed }}</strong>Projects Completed</span>
+        </div>
+        {% if about.resume_pdf %}<a class="btn btn-gradient mt-3" href="{{ about.resume_pdf.url }}" target="_blank">{{ about.resume_button_text }}</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,16 @@
+{% if featured_projects %}
+<section class="section band">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Work</p>
+      <h2 class="section-title">Featured Projects</h2>
+    </div>
+    <div class="row g-4">
+      {% for project in featured_projects %}
+        {% include "core/project_card.html" %}
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5"><a class="btn btn-outline-cyan" href="{% url 'core:projects' %}">View All Projects</a></div>
+  </div>
+</section>
+{% endif %}

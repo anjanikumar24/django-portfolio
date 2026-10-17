@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% if about.meta_title %}{{ about.meta_title }}{% else %}About{% endif %}{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Profile" title="About" subtitle="" %}
+{% include "core/section_about.html" %}
+{% include "core/section_stats.html" %}
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      {% for item in timelines %}
+      <div class="col-lg-4 reveal"><div class="glass-card h-100"><p class="eyebrow">{{ item.get_timeline_type_display }}</p><h3>{{ item.title }}</h3><strong>{{ item.period }}</strong><p>{{ item.description }}</p></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

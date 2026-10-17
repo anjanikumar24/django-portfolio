@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Certifications{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Proof" title="Certifications" subtitle="" %}
+<section class="section"><div class="container"><div class="row g-4">
+{% for certification in certifications %}
+<div class="col-md-6 col-xl-4 reveal"><div class="project-card h-100">{% if certification.certificate_image %}<div class="project-image"><img src="{{ certification.certificate_image.url }}" alt="{{ certification.certificate_name }}"></div>{% endif %}<div class="project-body"><p class="eyebrow">{{ certification.organization }}</p><h3>{{ certification.certificate_name }}</h3>{% if certification.issue_date %}<p>{{ certification.issue_date }}</p>{% endif %}{% if certification.certificate_url %}<a class="card-link" href="{{ certification.certificate_url }}" target="_blank" rel="noopener">View Certificate</a>{% endif %}</div></div></div>
+{% empty %}<div class="col-12"><div class="glass-card text-center">No certifications are published yet.</div></div>{% endfor %}
+</div></div></section>
+{% endblock %}

@@ -1,0 +1,14 @@
+<div class="col-md-6 col-xl-4 reveal">
+  <article class="project-card h-100">
+    <a href="{{ project.get_absolute_url }}" class="project-image">
+      {% if project.thumbnail %}<img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" loading="lazy">{% else %}<span><i class="bi bi-window"></i></span>{% endif %}
+    </a>
+    <div class="project-body">
+      <p class="eyebrow">{{ project.category.name|default:project.get_project_status_display }}</p>
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.short_description|truncatechars:140 }}</p>
+      <div class="tech-line">{{ project.technologies_used }}</div>
+      <a href="{{ project.get_absolute_url }}" class="card-link">Details <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </article>
+</div>

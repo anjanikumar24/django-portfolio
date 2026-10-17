@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Education{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Learning" title="Education" subtitle="" %}
+<section class="section"><div class="container"><div class="row g-4">
+{% for item in educations %}
+<div class="col-md-6 reveal"><div class="glass-card h-100"><p class="eyebrow">{{ item.passing_year }}</p><h2>{{ item.degree }}</h2><h3>{{ item.branch }}</h3><p>{{ item.college }} {{ item.school }}</p><p>{{ item.university }}</p>{% if item.cgpa %}<strong>{{ item.cgpa }}</strong>{% endif %}<p>{{ item.description }}</p></div></div>
+{% empty %}<div class="col-12"><div class="glass-card text-center">No education entries are published yet.</div></div>{% endfor %}
+</div></div></section>
+{% endblock %}

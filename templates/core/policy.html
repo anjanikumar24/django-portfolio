@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{% if page.meta_title %}{{ page.meta_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Legal" title=page.title subtitle="" %}
+<section class="section"><div class="container"><article class="glass-card content-block reveal">{{ page.content|linebreaks }}</article></div></section>
+{% endblock %}

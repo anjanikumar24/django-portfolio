@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Media" title="Gallery" subtitle="" %}
+<section class="section"><div class="container"><div class="gallery-grid">
+{% for image in images %}<figure class="reveal"><img src="{{ image.image.url }}" alt="{{ image.title }}"><figcaption><strong>{{ image.title }}</strong>{{ image.caption }}</figcaption></figure>
+{% empty %}<div class="glass-card text-center">No gallery images are published yet.</div>{% endfor %}
+</div></div></section>
+{% endblock %}

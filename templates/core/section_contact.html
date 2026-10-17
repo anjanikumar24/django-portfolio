@@ -1,0 +1,23 @@
+<section class="section contact-band">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5 reveal">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title">Start A Conversation</h2>
+      </div>
+      <div class="col-lg-7 reveal">
+        <form method="post" action="{% url 'core:contact' %}" class="glass-card form-card">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-md-6">{{ contact_form.name }}</div>
+            <div class="col-md-6">{{ contact_form.email }}</div>
+            <div class="col-md-6">{{ contact_form.phone }}</div>
+            <div class="col-md-6">{{ contact_form.subject }}</div>
+            <div class="col-12">{{ contact_form.message }}</div>
+            <div class="col-12"><button class="btn btn-gradient" type="submit">Send Message</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

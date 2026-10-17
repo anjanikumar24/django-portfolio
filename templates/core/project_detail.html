@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{% if project.meta_title %}{{ project.meta_title }}{% else %}{{ project.title }}{% endif %}{% endblock %}
+{% block meta_description %}{% if project.meta_description %}{{ project.meta_description }}{% else %}{{ project.short_description|truncatechars:155 }}{% endif %}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container reveal">
+    <p class="eyebrow">{{ project.category.name|default:project.get_project_status_display }}</p>
+    <h1>{{ project.title }}</h1>
+    <p class="lead">{{ project.short_description }}</p>
+    <div class="hero-actions">
+      {% if project.github_link %}<a class="btn btn-outline-cyan" href="{{ project.github_link }}" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>{% endif %}
+      {% if project.live_demo_link %}<a class="btn btn-gradient" href="{{ project.live_demo_link }}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live Demo</a>{% endif %}
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8 reveal">
+        {% if project.thumbnail %}<img class="detail-hero-image" src="{{ project.thumbnail.url }}" alt="{{ project.title }}">{% endif %}
+        <div class="content-block">{{ project.full_description|linebreaks }}</div>
+        {% if project.feature_list %}<h2 class="h4 mt-5">Features</h2><ul class="feature-list">{% for item in project.feature_list %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+      <aside class="col-lg-4 reveal">
+        <div class="glass-card sticky-card">
+          <h2 class="h5">Project Info</h2>
+          <p><strong>Technologies:</strong> {{ project.technologies_used }}</p>
+          <p><strong>Status:</strong> {{ project.get_project_status_display }}</p>
+          {% if project.completion_date %}<p><strong>Completed:</strong> {{ project.completion_date }}</p>{% endif %}
+        </div>
+      </aside>
+    </div>
+    <div class="screenshot-grid mt-5">
+      {% for shot in project.screenshots.all %}
+      <figure class="reveal"><img src="{{ shot.image.url }}" alt="{{ shot.caption|default:project.title }}"><figcaption>{{ shot.caption }}</figcaption></figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% if related_projects %}
+<section class="section band"><div class="container"><h2 class="section-title reveal">Related Projects</h2><div class="row g-4">{% for project in related_projects %}{% include "core/project_card.html" %}{% endfor %}</div></div></section>
+{% endif %}
+{% endblock %}

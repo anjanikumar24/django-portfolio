@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock %}
+{% block content %}
+{% include "core/page_header.html" with eyebrow="Work" title="Projects" subtitle="" %}
+<section class="section">
+  <div class="container">
+    <form class="filter-bar glass-card reveal" method="get">
+      <input class="form-control" name="q" value="{{ query }}" placeholder="Search projects">
+      <select class="form-select" name="category">
+        <option value="">All categories</option>
+        {% for category in categories %}<option value="{{ category.slug }}" {% if category_slug == category.slug %}selected{% endif %}>{{ category.name }}</option>{% endfor %}
+      </select>
+      <button class="btn btn-gradient" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    <div class="row g-4 mt-2">
+      {% for project in projects %}
+        {% include "core/project_card.html" %}
+      {% empty %}
+        <div class="col-12"><div class="glass-card text-center">No projects are published yet.</div></div>
+      {% endfor %}
+    </div>
+    {% include "core/pagination.html" with page_obj=projects %}
+  </div>
+</section>
+{% endblock %}

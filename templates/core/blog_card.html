@@ -1,0 +1,13 @@
+<div class="col-md-6 col-xl-4 reveal">
+  <article class="project-card h-100">
+    <a href="{{ post.get_absolute_url }}" class="project-image">
+      {% if post.featured_image %}<img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy">{% else %}<span><i class="bi bi-journal-text"></i></span>{% endif %}
+    </a>
+    <div class="project-body">
+      <p class="eyebrow">{{ post.category.name|default:"Article" }}</p>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt|truncatechars:145 }}</p>
+      <a href="{{ post.get_absolute_url }}" class="card-link">Read Post <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </article>
+</div>
