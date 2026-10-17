@@ -8,11 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+DEBUG = False
 
-
-SECRET_KEY = "django-insecure-change-this-key-before-production"
-DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
+ALLOWED_HOSTS = [
+    "anjanikumarportfolio.pythonanywhere.com",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
